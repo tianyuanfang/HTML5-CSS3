@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="img/ct.png" />
+		<title>音乐播放器</title>
+		<style>
+			#online{
+				background-color:dodgerblue ;
+				width: 630px;
+				height: 100px;
+				float: left;
+				margin-bottom: 30px;
+			}
+			#local{
+				background-color: black;
+				width: 630px;
+				height: 100px;
+				float: left;
+				margin-bottom: 30px;
+			}
+			h1{
+				color: white;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="online">
+			<h1>在线音乐</h1>
+		</div>
+		<div id="local">
+			<h1>本地音乐</h1>
+		</div>
+		<label>The Salter Water Room</label>&nbsp&nbsp<a href="#" id="play">播放</a>
+		<br /><br />
+		<audio src="music.mp3" controls="controls" id="audio"></audio>
+	</body>
+	<script>
+		var play=document.getElementById("play");
+		var aud=document.getElementById("audio");
+		play.onclick=function(){
+			if(play.innerHTML=="播放"){
+				play.innerHTML="暂停";
+				aud.play();
+			}
+			else{
+				play.innerHTML="播放";
+				aud.pause();
+			}
+		}
+	</script>
+</html>
