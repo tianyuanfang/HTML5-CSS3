@@ -50,10 +50,16 @@
 	<script>		
 		window.onload=function(){
 			var p=document.getElementById("p"); 			
-			var color,e1,count=0;			
+			var color,e1,count=0;	
+			if(localStorage.getItem("i")==null||localStorage.getItem("color")==null){
+				localStorage.setItem("i",'1');
+				localStorage.setItem("color","darkgray");
+			}
 			var elocal=document.getElementById("c"+localStorage.getItem("i"));
-			p.style.backgroundColor=localStorage.getItem('color');
-			elocal.style.top="-4px";			
+			if(localStorage.getItem("i")!=null){
+				p.style.backgroundColor=localStorage.getItem('color');
+				elocal.style.top="-4px";
+			}
 			for(var i=1;i<7;i++){
 			(function(i){
 				var e=document.getElementById("c"+i);			
