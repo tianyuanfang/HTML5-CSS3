@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>拖动头像</title>
+		<link rel="icon" href="img/ct.png">
+		<style>
+			#div{
+				width: 180px;
+				height: 180px;
+				border: 1px solid gray;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>上传头像</h2>
+		<div id="div"></div>
+	</body>
+	<script>
+		var div=document.getElementById("div");
+		var reg=/image\/\w+/;
+		if(!window.FileReader){
+			div.innerHTML="抱歉，您的浏览器不支持FileReader";
+		}
+		function readAsDataURL(file){
+			var reader=new FileReader();
+			if(!reg.test(file.type)){
+				alert("请确保文件为图像类型");
+				return false;
+			}
+			reader.readAsDataURL(file);
+			reader.onload=function(){
+				div.innerHTML='<img src="'+this.result+'" alt=""/>';
+			}
+		}	
+		div.ondragover=function(e){
+			e.preventDefault();
+		}
+		div.ondrop=function(e){
+			e.preventDefault();				
+			readAsDataURL(e.dataTransfer.files[0]);
+		}
+	</script>
+</html>
