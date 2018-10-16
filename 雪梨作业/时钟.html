@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>时钟</title>
+	<style>
+		canvas {
+			border: 1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var c = canvas.getContext('2d');
+	var pi = Math.PI;
+	var num = 0;
+	function angle(deg) {
+		return deg / 180 * pi;
+	}
+	function angle2(deg){
+		return deg*pi/180;
+	}
+	//画图
+	function drawBg() {
+		c.save();
+		c.beginPath();
+		c.lineWidth = 5;
+		c.strokeStyle = 'greenyellow';
+		c.arc(250, 250, 200, 0, 2 * pi);
+		c.stroke();
+		c.closePath();
+
+		c.beginPath();
+		c.translate(250, 250);
+		for (var i = 0; i < 60; i++) {
+			if (num % 30 == 0) {
+				c.fillStyle = 'red';
+				c.fillRect(170, -3, 20, 5);
+
+			} else {
+				c.fillStyle = 'black';
+				c.fillRect(170, -3, 15, 5);
+			}
+			c.rotate(angle(6));
+			num += 6;
+		}
+		for (var i = 1; i < 13; i++) {
+			var x = 150 * Math.sin(angle(i * 30));
+			var y = 150 * -Math.cos(angle(i * 30));
+			c.font = '20px 宋体';
+			c.fillStyle = 'black';
+			c.textBaseline = 'middle';
+			c.fillText(i, x, y);
+		}
+		c.closePath();
+		c.restore();
+	}
+	//分针
+	function drawMin(m) {
+		c.save();
+		c.translate(250, 250);
+		c.beginPath();
+		c.lineWidth = 5;
+		c.strokeStyle = 'pink';
+		c.lineCap = 'square';
+		var rad = angle2(6) * (m+30);
+		c.rotate(rad);
+		c.moveTo(0, 0);
+		c.lineTo(0, 110);
+		c.fill();
+		c.stroke();
+		c.closePath();
+		c.restore();
+	}
+	//时针
+	function drawHour(h, m) {
+		c.save();
+		c.translate(250, 250);
+		var rad = angle2(30) * (h+6) + angle2(30) * m / 60;
+		c.beginPath();
+		c.lineWidth = 5;
+		c.strokeStyle = 'purple';
+		c.lineCap = 'square';
+		c.rotate(rad);
+		c.moveTo(0, 0);
+		c.lineTo(0, 90);
+		c.fill();
+		c.stroke();
+		c.closePath();
+		c.restore();
+	}
+	//秒针
+	function drawSecond(s) {
+		c.save();
+		c.translate(250, 250);
+		var rad = angle2(6) * (s+30);
+		c.beginPath();
+		c.lineWidth = 5;
+		c.strokeStyle = 'red';
+		c.lineCap = 'square';
+		c.fillStyle = 'black';
+		c.rotate(rad);
+		c.moveTo(0, 0);
+		c.lineTo(0, 130);
+		c.fill();
+		c.stroke()
+		c.restore();
+	}
+	function drawDot() {
+		c.save();
+		c.translate(250, 250);
+		c.beginPath();
+		c.arc(0, 0, 4, 0, 2 * pi);
+		c.fillStyle = "black";
+		c.fill();
+		c.closePath();
+		c.restore();
+	}
+	function draw() {
+		c.clearRect(0, 0, 500, 500);
+		var date = new Date();
+		var h = date.getHours();
+		var m = date.getMinutes();
+		var s = date.getSeconds();
+		console.log(date);
+		drawBg();
+		drawHour(h, m);
+		drawMin(m);
+		drawSecond(s);
+		drawDot();
+		c.restore();
+	}
+	draw();
+	setInterval(function () {
+		draw();
+	}, 1000);
+</script>
+
+</html>
