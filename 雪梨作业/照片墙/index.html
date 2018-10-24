@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>照片墙</title>
+		<style>
+			body{
+				background: url(img/bg3.JPG);
+				/*background-size: 100%;
+				background-repeat: no-repeat;*/
+			}
+			img{
+				width: 130px;
+				height: 90px;
+			}
+			ul li{
+				list-style: none;
+				float: left;
+				margin: 20px;
+				width: 150px;
+				height: 150px;
+				background: #fff;
+			}
+			li:hover{
+				cursor: pointer;
+			}
+			.img{
+				margin: 10px;
+			}
+			.word{
+				margin-left: 55px;
+			}
+			#li1{
+				transform: rotate(-3deg);
+			}			
+			#li2{
+				transform: rotate(-1deg);
+			}			
+			#li3{
+				transform: rotate(-10deg);
+			}						
+			#li4{
+				transform: rotate(-2deg);
+			}			
+			#li5{
+				transform: rotate(-5deg);
+			}			
+			#li6{
+				transform: rotate(-8deg);
+			}	
+			#li1:hover,#li2:hover,#li3:hover,#li4:hover,#li5:hover,#li6:hover{
+				transform: scale(1.2,1.2);
+			}		
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li id="li1">				
+				<div class="img"><img src="img/11.jpg"></div>
+				<div class="word">相识</div>				
+			</li>
+			<li id="li2">				
+				<div class="img"><img src="img/22.jpg"></div>
+				<div class="word">凝视</div>				
+			</li>
+			<li id="li3">				
+				<div class="img"><img src="img/33.jpg"></div>
+				<div class="word">甜睡</div>				
+			</li>
+			<li id="li4">				
+				<div class="img"><img src="img/44.jpg"></div>
+				<div class="word">逗乐</div>				
+			</li>
+			<li id="li5">				
+				<div class="img"><img src="img/55.jpg"></div>
+				<div class="word">奔跑</div>				
+			</li>
+			<li id="li6">				
+				<div class="img"><img src="img/66.jpg"></div>
+				<div class="word">漠视</div>				
+			</li>
+		</ul>
+	</body>
+</html>
